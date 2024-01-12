@@ -22,8 +22,6 @@ document.getElementById('search-button').addEventListener('click', function(e) {
     .then(response => response.json())
     .then(cityData => {
         displayCurrentWeather(cityData, cityName); // Display current weather
-
-        //5 day forecast display
         displayFiveDayForecast(cityData); // Display 5-day forecast
     })
     .catch(error => {
@@ -40,14 +38,18 @@ function displayCurrentWeather(cityData, cityName) {
 }
 
 function displayFiveDayForecast(cityData) {
-    $('#forecast-container').empty(); // Clear previous forecast
-    const fiveDayForecast = [8, 16, 24, 32, 39];
-    $.each(fiveDayForecast, function(i, index) {
+    $('#forecast-container').empty(); 
+    const fiveDayForecastIndices = [8, 16, 24, 32, 39];
+    $.each(fiveDayForecastIndices, function(i, index) {
         const forecast = cityData.list[index];
         const dateString = forecast.dt_txt.split(' ')[0];
         const iconUrl = `http://openweathermap.org/img/w/${forecast.weather[0].icon}.png`;
         const tempCelsius = forecast.main.temp - 273.15;
+
         displayDayForecast(dateString, iconUrl, tempCelsius, forecast.wind.speed, forecast.main.humidity);
+
+        // Log the forecast for each day
+        console.log("Forecast for " + dateString + ":", forecast);
     });
 }
 
@@ -63,3 +65,18 @@ function displayDayForecast(date, icon, temp, wind, humidity) {
     `;
     $('#forecast-container').append(forecastElement);
 }
+
+
+//function to show seached location as button
+function renderButtons() {
+    $("#history").empty();
+ 
+    $.each(locations, function (i, location) {
+      const a = $("<button>");
+      a.addClass("location");
+      a.attr("data-name", location);
+      a.text(location);
+      $("#history").append(a);
+    })
+  }
+
