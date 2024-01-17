@@ -20,7 +20,7 @@
   <div class="container-fluid" style="max-width: 1400px">
     <div class="row">
       <aside class="col-lg-3 pb-3">
-        <h2 id="form-heading" class="mt-1 h3 form-label">
+        <h2 id="form-heading" class="mt-1 form-label">
           Search for a City:
         </h2>
         <form id="search-form" class="form">
@@ -32,13 +32,12 @@
                 <button type="submit" class="btn search-button" id="search-button" aria-label="submit search">
                   Search
                 </button>
-    </form>
-                <hr class="hr weather-hr" />
               </div>
             </div>
           </div>
         </form>
-        <div class="list-group" id="history"></div>
+        <div id="history"></div>
+        <hr class="hr weather-hr" />
       </aside>
 
       <div class="col-lg-9 pb-3">
@@ -51,8 +50,8 @@
         </section>
         <section id="forecast" class="row mt-3" role="region" aria-live="polite">
           <div id="forecast-container" class="forecast-row">
-              <h2></h2>
-              <!-- Forecast cards will be appended here -->
+            <h3>5-Day Forecast:</h3>
+            <!-- Forecast cards will be appended here -->
           </div>
       </section>
       

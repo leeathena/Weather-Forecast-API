@@ -1,8 +1,22 @@
+//function to show seached location as button
+function renderButtons() {
+    $("#history").empty();
+    $.each(searchedCities, function(i, cityName) {
+        const button = $("<button>");
+        button.addClass("location");
+        button.attr("data-name", cityName); 
+        button.text(cityName);
+        $("#history").append(button);
+    });
+}
+
+let searchedCities = [];
+
 document.getElementById('search-button').addEventListener('click', function(e) {
     e.preventDefault();
 
-    var cityName = document.getElementById('search-input').value;
-    cityName = cityName.charAt(0).toUpperCase() + cityName.slice(1);
+    var cityName = document.getElementById('search-input').value.trim();
+    var formattedCityName = cityName.charAt(0).toUpperCase() + cityName.slice(1).toLowerCase();
 
     const APIKey = '3fecceee176414dfceab5fb4dd83902e';
 
@@ -29,6 +43,11 @@ document.getElementById('search-button').addEventListener('click', function(e) {
     .catch(error => {
         console.error('Error:', error);
     });
+
+    if (!searchedCities.includes(formattedCityName)) {
+        searchedCities.push(formattedCityName);
+        renderButtons(); 
+    }
 });
 
 function displayCurrentWeather(cityData, cityName) {
@@ -45,7 +64,7 @@ function displayFiveDayForecast(cityData) {
     $.each(fiveDayForecastIndices, function(i, index) {
         const forecast = cityData.list[index];
         const dateString = forecast.dt_txt.split(' ')[0];
-        const iconUrl = `http://openweathermap.org/img/w/${forecast.weather[0].icon}.png`;
+        const iconUrl = `https://openweathermap.org/img/w/${forecast.weather[0].icon}.png`;
         const tempCelsius = forecast.main.temp - 273.15;
 
         displayDayForecast(dateString, iconUrl, tempCelsius, forecast.wind.speed, forecast.main.humidity);
@@ -56,7 +75,6 @@ function displayFiveDayForecast(cityData) {
 }
 
 function displayDayForecast(date, icon, temp, wind, humidity) {
-    $("h2").text('5-Day Forecast');
     const forecastElement = `
     <div class="card">
         <div class="card-header">${date}</div>
@@ -71,17 +89,4 @@ function displayDayForecast(date, icon, temp, wind, humidity) {
     $('#forecast-container').append(forecastElement);
 }
 
-
-//function to show seached location as button
-function renderButtons() {
-    $("#history").empty();
- 
-    $.each(locations, function (i, location) {
-      const a = $("<button>");
-      a.addClass("location");
-      a.attr("data-name", location);
-      a.text(location);
-      $("#history").append(a);
-    })
-  }
 
