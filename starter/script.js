@@ -54,15 +54,18 @@ function displayFiveDayForecast(cityData) {
 }
 
 function displayDayForecast(date, icon, temp, wind, humidity) {
+    $("h2").text('5-Day Forecast');
     const forecastElement = `
-    <div class="card-header">${date}</div>
-    <div class="card-body">
-        <img src="${icon}" alt="Weather Icon">
-        <p>Temperature: ${temp.toFixed(2)} °C</p>
-        <p>Wind: ${wind} m/s</p>
-        <p>Humidity: ${humidity}%</p>
+    <div class="card">
+        <div class="card-header">${date}</div>
+        <div class="card-body">
+            <img src="${icon}" alt="Weather Icon">
+            <p>Temperature: ${temp.toFixed(2)} °C</p>
+            <p>Wind: ${wind} m/s</p>
+            <p>Humidity: ${humidity}%</p>
+        </div>
     </div>
-    `;
+    `;    
     $('#forecast-container').append(forecastElement);
 }
 

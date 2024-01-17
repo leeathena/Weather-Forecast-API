@@ -1,0 +1,10 @@
+.forecast-row {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; /* Allows wrapping on smaller screens */
+    gap: 10px; /* Adjust the space between cards */
+}
+
+.card {
+    flex: 0 0 calc(20% - 10px); 
+}
