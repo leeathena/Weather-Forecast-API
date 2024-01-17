@@ -7,4 +7,5 @@
 
 .card {
     flex: 0 0 calc(20% - 10px); 
+    width: 300px;
 }

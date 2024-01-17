@@ -1,7 +1,9 @@
 document.getElementById('search-button').addEventListener('click', function(e) {
     e.preventDefault();
 
-    const cityName = document.getElementById('search-input').value;
+    var cityName = document.getElementById('search-input').value;
+    cityName = cityName.charAt(0).toUpperCase() + cityName.slice(1);
+
     const APIKey = '3fecceee176414dfceab5fb4dd83902e';
 
     const geocodeUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=1&appid=${APIKey}`;
@@ -30,11 +32,11 @@ document.getElementById('search-button').addEventListener('click', function(e) {
 });
 
 function displayCurrentWeather(cityData, cityName) {
-    $(".city").text(cityName + " " + dayjs().format('dddd, MMMM D'));
+    $(".city").text(cityName + " : " + dayjs().format('dddd, MMMM YYYY'));
     $(".wind").text("Wind Speed: " + cityData.list[0].wind.speed + " m/s");
     $(".humidity").text("Humidity: " + cityData.list[0].main.humidity + "%");
     const tempC = cityData.list[0].main.temp - 273.15;
-    $(".temp").text("Temperature (C): " + tempC.toFixed(2) + '');
+    $(".temp").text("Temperature (C): " + tempC.toFixed(2) + '°C');
 }
 
 function displayFiveDayForecast(cityData) {
