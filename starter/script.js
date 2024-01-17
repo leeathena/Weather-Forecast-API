@@ -34,7 +34,7 @@ function displayCurrentWeather(cityData, cityName) {
     $(".wind").text("Wind Speed: " + cityData.list[0].wind.speed + " m/s");
     $(".humidity").text("Humidity: " + cityData.list[0].main.humidity + "%");
     const tempC = cityData.list[0].main.temp - 273.15;
-    $(".temp").text("Temperature (C): " + tempC.toFixed(2));
+    $(".temp").text("Temperature (C): " + tempC.toFixed(2) + '');
 }
 
 function displayFiveDayForecast(cityData) {
@@ -55,13 +55,13 @@ function displayFiveDayForecast(cityData) {
 
 function displayDayForecast(date, icon, temp, wind, humidity) {
     const forecastElement = `
-        <div class="weather-card">
-            <h3>${date}</h3>
-            <img src="${icon}" alt="Weather Icon">
-            <p>Temperature: ${temp.toFixed(2)} °C</p>
-            <p>Wind: ${wind} m/s</p>
-            <p>Humidity: ${humidity}%</p>
-        </div>
+    <div class="card-header">${date}</div>
+    <div class="card-body">
+        <img src="${icon}" alt="Weather Icon">
+        <p>Temperature: ${temp.toFixed(2)} °C</p>
+        <p>Wind: ${wind} m/s</p>
+        <p>Humidity: ${humidity}%</p>
+    </div>
     `;
     $('#forecast-container').append(forecastElement);
 }
