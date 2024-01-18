@@ -47,6 +47,15 @@ document.getElementById('search-button').addEventListener('click', function(e) {
     if (!searchedCities.includes(formattedCityName)) {
         searchedCities.push(formattedCityName);
         renderButtons(); 
+        localStorage.setItem('searchedCities', JSON.stringify(searchedCities));
+        renderButtons(); 
+    }
+});
+
+$(document).ready(function() {
+    if (localStorage.getItem('searchedCities')) {
+        searchedCities = JSON.parse(localStorage.getItem('searchedCities'));
+        renderButtons();
     }
 });
 
@@ -71,6 +80,8 @@ function displayFiveDayForecast(cityData) {
 
         // Log the forecast for each day
         console.log("Forecast for " + dateString + ":", forecast);
+        $('h4').show();
+
     });
 }
 
