@@ -19,6 +19,8 @@ This is a weather dashboard with form inputs.
   - When a user click on a city in the search history they are again presented with current and future conditions for that city
 
 ## Screenshots
+![螢幕擷取畫面 2024-01-19 035033](https://github.com/leeathena/Weather-Forecast-API/assets/149600986/01c7a3d9-790c-46eb-9847-bce89325db49)
+![螢幕擷取畫面 2024-01-19 035131](https://github.com/leeathena/Weather-Forecast-API/assets/149600986/0e30bae1-338d-4ced-afcb-b70337cef8c0)
 
 ## Application URL
 https://leeathena.github.io/Weather-Forecast-API/
